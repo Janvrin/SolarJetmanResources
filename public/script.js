@@ -1,11 +1,20 @@
 
-
+const repoUrl = 'https://raw.githubusercontent.com/Janvrin/SolarJetmanResources';
 
 function loadContent() {
-    const path = window.location.pathname;
+    let path = window.location.pathname;
+
+    if (path.endsWith('/')) {
+        path = path.slice(0, -1);
+    }
+
+    if (path === '') {
+        path = '/index';
+    }
+
     const contentContainer = document.querySelector('main');
     if (contentContainer) {
-        fetch(`${repoUrl}/raw/main/content${path}`)
+        fetch(`${repoUrl}/main/content${path}.html`)
             .then(response => response.text())
             .then(html => {
                 contentContainer.innerHTML = html;
@@ -16,11 +25,13 @@ function loadContent() {
     }
 }
 
-$(document).ready(loadContent);
-$('.content-link').on('click', function(e) {
-    e.preventDefault();
-    const href = $(this).attr('href');
-    history.pushState(null, '', href);
+$(document).ready(function() {
     loadContent();
+    $('.content-link').on('click', function(e) {
+        e.preventDefault();
+        const contentPath = $(this).attr('content-path');
+        history.pushState(null, '', contentPath);
+        loadContent();
+    });
+    window.addEventListener('popstate', loadContent);
 });
-window.addEventListener('popstate', loadContent);

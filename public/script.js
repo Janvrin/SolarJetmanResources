@@ -27,7 +27,7 @@ function loadContent() {
 
 $(document).ready(function() {
     loadContent();
-    $('.content-link').on('click', function(e) {
+    $('body').on('click', '.content-link', function(e) {
         e.preventDefault();
         const contentPath = $(this).attr('content-path');
         history.pushState(null, '', contentPath);

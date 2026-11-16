@@ -1,0 +1,14 @@
+{
+    "headers": [ "Index", "Name", "Position" ],
+    "rows": [
+        [ "0x00", "Warp Enemy", "(0x372, 0x01AF)" ],
+        [ "0x01", "Limpet Cannon (East North East)", "(0x0122, 0x01A7)" ],
+        [ "0x02", "Limpet Cannon (East)", "(0x00AF, 0x02A5)" ],
+        [ "0x03", "Limpet Cannon (West North West)", "(0x013F, 0x02F0)" ],
+        [ "0x04", "Limpet Cannon (South South West)", "(0x01E0, 0x0267)" ],
+        [ "0x05", "Limpet Cannon (North West)", "(0x03B1, 0x0300)" ],
+        [ "0x06", "Sphere Spawner (Easy)", "(0x02D6, 0x02A3)" ],
+        [ "0x07", "Limpet Cannon (South South East)", "(0x0314, 0x01EE)" ],
+        [ "0x08", "Limpet Cannon (West South West)", "(0x03D4, 0x016E)" ]
+    ]
+}

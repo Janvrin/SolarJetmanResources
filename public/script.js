@@ -1,5 +1,6 @@
 var pageIcons = {};
 var pageTitles = {};
+var contentContainer = null
 const repoUrl = 'https://raw.githubusercontent.com/Janvrin/SolarJetmanResources';
 
 function loadContent() {
@@ -13,12 +14,12 @@ function loadContent() {
         path = '/index';
     }
 
-    const contentContainer = document.querySelector('main');
     if (contentContainer) {
         fetch(`${repoUrl}/main/content${path}.html`)
             .then(response => response.text())
             .then(html => {
-                contentContainer.innerHTML = enrich(path, html);
+                contentContainer.html(html);
+                enrich(path);
             })
             .catch(error => {
                 console.error('Error loading content:', error);
@@ -26,13 +27,22 @@ function loadContent() {
     }
 }
 
-function enrich(path, html) {
-    html = createBreadcrumbs(path) + createPageTitle(path) + html;
-    html = addMetadataTables(html);
-    return html;
+function enrich(path) {
+    addPageTitle(path);
+    addBreadcrumbs(path);
+    addMetadataTables();
+    addDataTables();
+    addLinks();
 }
 
-function createBreadcrumbs(path) {
+function addPageTitle(path) {
+    const title = pageTitles[path] || path.split('/').pop();
+    const icon = pageIcons[path] ? `<img src="${repoUrl}/main/${pageIcons[path]}" alt="${title} icon"> ` : '';
+
+    contentContainer.prepend("<h2>" + icon + title + "</h2>");
+}
+
+function addBreadcrumbs(path) {
     var html = "<div>";
 
     const parts = path == "/index" ? [""] : path.split('/');
@@ -54,22 +64,14 @@ function createBreadcrumbs(path) {
     }
 
     html += "</div>";
-    return html;
+    contentContainer.prepend(html);
 }
 
-function createPageTitle(path) {
-    const title = pageTitles[path] || path.split('/').pop();
-    const icon = pageIcons[path] ? `<img src="${repoUrl}/main/${pageIcons[path]}" alt="${title} icon"> ` : '';
-
-    return "<h2>" + icon + title + "</h2>";
-}
-
-function addMetadataTables(html) {
-
-    $(html).find('div.metadata-table').each(function() {
+function addMetadataTables() {
+    contentContainer.find('div.metadata-table').each(function() {
         const table = this;
         const path = $(table).data('path');
-        fetch(`${repoUrl}/main/data${path}/metadata.json`)
+        fetch(`${repoUrl}/main/data${path}`)
             .then(response => response.json())
             .then(metadata => {
                 let tableHtml = '<table class="data-table">';
@@ -77,14 +79,45 @@ function addMetadataTables(html) {
                     tableHtml += `<tr><th>${key}</th><td>${metadata[key]}</td></tr>`;
                 }
                 tableHtml += '</table>';
-                $(table).replaceWith(tableHtml);
+
+                $(table).html(tableHtml);
             })
             .catch(error => {
                 console.error('Error loading metadata:', error);
             });
     });
+}
 
-    return html;
+function addDataTables() {
+    contentContainer.find('div.data-table').each(function() {
+        const table = this;
+        const path = $(table).data('path');
+        fetch(`${repoUrl}/main/data${path}`)
+            .then(response => response.json())
+            .then(data => {
+                let tableHtml = '<table class="data-table"><thead><tr>';
+                for (const header of data["headers"]) {
+                    tableHtml += `<th>${header}</th>`;
+                }
+                tableHtml += '</tr></thead><tbody>';
+                for (const row of data["rows"]) {
+                    tableHtml += '<tr>';
+                    for (const cell of row) {
+                        tableHtml += `<td>${cell}</td>`;
+                    }
+                    tableHtml += '</tr>';
+                }
+                tableHtml += '</tbody></table>';
+
+                $(table).html(tableHtml);
+            })
+            .catch(error => {
+                console.error('Error loading data:', error);
+            });
+    });
+}
+
+function addLinks() {
 }
 
 $(document).ready(function() {
@@ -95,6 +128,7 @@ $(document).ready(function() {
     $.getJSON(`${repoUrl}/main/config/page_icons.json`, function(data) {
         pageIcons = data;
     });
+    contentContainer = $('#content');
 
     loadContent();
     $('body').on('click', '.content-link', function(e) {

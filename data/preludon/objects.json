@@ -1,11 +1,11 @@
 {
     "headers": [ "Index", "Name", "Position" ],
     "rows": [
-        [ "0x00", "<span class=\"content-link\" content-path=\"/info/objects/fuel-meter-75\">Fuel Meter (75%)</span>", "(0x027B, 0x00C2)" ],
-        [ "0x01", "<span class=\"content-link\" content-path=\"/info/objects/warp-blue\">Warp (Blue)</span>", "(0x003B, 0x003B)" ],
+        [ "0x00", "<span class=\"content-link\" content-path=\"/info/objects/fuel_meter_75\">Fuel Meter (75%)</span>", "(0x027B, 0x00C2)" ],
+        [ "0x01", "<span class=\"content-link\" content-path=\"/info/objects/warp_blue\">Warp (Blue)</span>", "(0x003B, 0x003B)" ],
         [ "0x02", "<span class=\"content-link\" content-path=\"/info/objects/shield\">Shield</span>", "(0x00F9, 0x0352)" ],
-        [ "0x03", "<span class=\"content-link\" content-path=\"/info/objects/crystal-blue\">Crystal (Blue)</span>", "(0x0244, 0x0348)" ],
-        [ "0x04", "<span class=\"content-link\" content-path=\"/info/objects/fuel-cell\">Fuel Cell</span>", "(0x03D9, 0x018C)" ],
+        [ "0x03", "<span class=\"content-link\" content-path=\"/info/objects/crystal_blue\">Crystal (Blue)</span>", "(0x0244, 0x0348)" ],
+        [ "0x04", "<span class=\"content-link\" content-path=\"/info/objects/fuel_cell\">Fuel Cell</span>", "(0x03D9, 0x018C)" ],
         [ "0x05", "<span class=\"content-link\" content-path=\"/info/objects/wormhole\">Wormhole</span>", "(0x03A4, 0x02D3)" ]
     ]
 }

@@ -1,14 +1,14 @@
 {
     "headers": [ "Index", "Name", "Position" ],
     "rows": [
-        [ "0x00", "<div class=\"content-link\" content-path=\"/preludon/enemies/warp-enemy\">Warp Enemy</div>", "(0x372, 0x01AF)" ],
-        [ "0x01", "<div class=\"content-link\" content-path=\"/preludon/enemies/limpet-cannon-east-north-east\">Limpet Cannon (East North East)</div>", "(0x0122, 0x01A7)" ],
-        [ "0x02", "<div class=\"content-link\" content-path=\"/preludon/enemies/limpet-cannon-east\">Limpet Cannon (East)</div>", "(0x00AF, 0x02A5)" ],
-        [ "0x03", "<div class=\"content-link\" content-path=\"/preludon/enemies/limpet-cannon-west-north-west\">Limpet Cannon (West North West)</div>", "(0x013F, 0x02F0)" ],
-        [ "0x04", "<div class=\"content-link\" content-path=\"/preludon/enemies/limpet-cannon-south-south-west\">Limpet Cannon (South South West)</div>", "(0x01E0, 0x0267)" ],
-        [ "0x05", "<div class=\"content-link\" content-path=\"/preludon/enemies/limpet-cannon-north-west\">Limpet Cannon (North West)</div>", "(0x03B1, 0x0300)" ],
-        [ "0x06", "<div class=\"content-link\" content-path=\"/preludon/enemies/sphere-spawner-easy\">Sphere Spawner (Easy)</div>", "(0x02D6, 0x02A3)" ],
-        [ "0x07", "<div class=\"content-link\" content-path=\"/preludon/enemies/limpet-cannon-south-south-east\">Limpet Cannon (South South East)</div>", "(0x0314, 0x01EE)" ],
-        [ "0x08", "<div class=\"content-link\" content-path=\"/preludon/enemies/limpet-cannon-west-south-west\">Limpet Cannon (West South West)</div>", "(0x03D4, 0x016E)" ]
+        [ "0x00", "<span class=\"content-link\" content-path=\"/preludon/enemies/warp-enemy\">Warp Enemy</span>", "(0x372, 0x01AF)" ],
+        [ "0x01", "<span class=\"content-link\" content-path=\"/preludon/enemies/limpet-cannon-east-north-east\">Limpet Cannon (East North East)</span>", "(0x0122, 0x01A7)" ],
+        [ "0x02", "<span class=\"content-link\" content-path=\"/preludon/enemies/limpet-cannon-east\">Limpet Cannon (East)</span>", "(0x00AF, 0x02A5)" ],
+        [ "0x03", "<span class=\"content-link\" content-path=\"/preludon/enemies/limpet-cannon-west-north-west\">Limpet Cannon (West North West)</span>", "(0x013F, 0x02F0)" ],
+        [ "0x04", "<span class=\"content-link\" content-path=\"/preludon/enemies/limpet-cannon-south-south-west\">Limpet Cannon (South South West)</span>", "(0x01E0, 0x0267)" ],
+        [ "0x05", "<span class=\"content-link\" content-path=\"/preludon/enemies/limpet-cannon-north-west\">Limpet Cannon (North West)</span>", "(0x03B1, 0x0300)" ],
+        [ "0x06", "<span class=\"content-link\" content-path=\"/preludon/enemies/sphere-spawner-easy\">Sphere Spawner (Easy)</span>", "(0x02D6, 0x02A3)" ],
+        [ "0x07", "<span class=\"content-link\" content-path=\"/preludon/enemies/limpet-cannon-south-south-east\">Limpet Cannon (South South East)</span>", "(0x0314, 0x01EE)" ],
+        [ "0x08", "<span class=\"content-link\" content-path=\"/preludon/enemies/limpet-cannon-west-south-west\">Limpet Cannon (West South West)</span>", "(0x03D4, 0x016E)" ]
     ]
 }

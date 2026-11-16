@@ -7,7 +7,7 @@
         [ "0x03", "<span class=\"content-link\" content-path=\"/info/enemies/limpet_cannon_west_north_west\">Limpet Cannon (West North West)</span>", "(0x013F, 0x02F0)" ],
         [ "0x04", "<span class=\"content-link\" content-path=\"/info/enemies/limpet_cannon_south_south_west\">Limpet Cannon (South South West)</span>", "(0x01E0, 0x0267)" ],
         [ "0x05", "<span class=\"content-link\" content-path=\"/info/enemies/limpet_cannon_north_west\">Limpet Cannon (North West)</span>", "(0x03B1, 0x0300)" ],
-        [ "0x06", "<span class=\"content-link\" content-path=\"/info/enemies/sphere-spawner-easy\">Sphere Spawner (Easy)</span>", "(0x02D6, 0x02A3)" ],
+        [ "0x06", "<span class=\"content-link\" content-path=\"/info/enemies/sphere_spawner_easy\">Sphere Spawner (Easy)</span>", "(0x02D6, 0x02A3)" ],
         [ "0x07", "<span class=\"content-link\" content-path=\"/info/enemies/limpet_cannon_south_south_east\">Limpet Cannon (South South East)</span>", "(0x0314, 0x01EE)" ],
         [ "0x08", "<span class=\"content-link\" content-path=\"/info/enemies/limpet_cannon_west_south_west\">Limpet Cannon (West South West)</span>", "(0x03D4, 0x016E)" ]
     ]

@@ -29,7 +29,7 @@ function loadContent() {
 function createBreadcrumbs(path) {
     var html = "<div>";
 
-    const parts = path.split('/');
+    const parts = path == "/index" ? [""] : path.split('/');
 
     var currentPath = '';
 
@@ -37,12 +37,11 @@ function createBreadcrumbs(path) {
 
         var part = parts[i];
 
-        if (part === 'index') {
-            part = '';
-        }
+        currentPath += (currentPath === "/" ? "" : "/") + parts[i];
 
-        currentPath += '/' + parts[i];
-        html += `<button content-path="/${currentPath}" class="content-link inline-link">${parts[i]}</button>`;
+        const title = pageTitles[currentPath] || parts[i];
+
+        html += `<button content-path="${currentPath}" class="content-link inline-link">${title}</button>`;
         if (i < parts.length - 1) {
             html += ' / ';
         }
@@ -60,6 +59,14 @@ function createPageTitle(path) {
 }
 
 $(document).ready(function() {
+
+    $.getJSON(`${repoUrl}/main/config/page_titles.json`, function(data) {
+        pageTitles = data;
+    });
+    $.getJSON(`${repoUrl}/main/config/page_icons.json`, function(data) {
+        pageIcons = data;
+    });
+
     loadContent();
     $('body').on('click', '.content-link', function(e) {
         e.preventDefault();
@@ -68,11 +75,4 @@ $(document).ready(function() {
         loadContent();
     });
     window.addEventListener('popstate', loadContent);
-
-    $.getJSON(`${repoUrl}/main/config/page_titles.json`, function(data) {
-        pageTitles = data;
-    });
-    $.getJSON(`${repoUrl}/main/config/page_icons.json`, function(data) {
-        pageIcons = data;
-    });
 });

@@ -1,7 +1,7 @@
 {
     "headers": [ "Index", "Name", "Position" ],
     "rows": [
-        [ "0x00", "<span class=\"content-link\" content-path=\"/info/enemies/warp_enemy\">Warp Enemy</span>", "(0x372, 0x01AF)" ],
+        [ "0x00", "<span class=\"content-link\" content-path=\"/info/enemies/warp_enemy\">Warp Enemy</span>", "(0x0372, 0x01AF)" ],
         [ "0x01", "<span class=\"content-link\" content-path=\"/info/enemies/limpet_cannon_east_north_east\">Limpet Cannon (East North East)</span>", "(0x0122, 0x01A7)" ],
         [ "0x02", "<span class=\"content-link\" content-path=\"/info/enemies/limpet_cannon_east\">Limpet Cannon (East)</span>", "(0x00AF, 0x02A5)" ],
         [ "0x03", "<span class=\"content-link\" content-path=\"/info/enemies/limpet_cannon_west_north_west\">Limpet Cannon (West North West)</span>", "(0x013F, 0x02F0)" ],

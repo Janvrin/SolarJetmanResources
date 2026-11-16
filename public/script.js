@@ -37,7 +37,7 @@ function enrich(path) {
 
 function addPageTitle(path) {
     const title = pageTitles[path] || path.split('/').pop();
-    const icon = pageIcons[path] ? `<img src="${repoUrl}/main/${pageIcons[path]}" alt="${title} icon"> ` : '';
+    const icon = pageIcons[path] ? `<img src="${repoUrl}/main/${pageIcons[path]["large"]}" alt="${title} icon"> ` : '';
 
     contentContainer.prepend("<h2>" + icon + title + "</h2>");
 }
@@ -57,7 +57,7 @@ function addBreadcrumbs(path) {
 
         const title = pageTitles[currentPath] || parts[i];
 
-        html += `<button content-path="${currentPath}" class="content-link inline-link">${title}</button>`;
+        html += `<div content-path="${currentPath}" class="content-link inline-link">${title}</div>`;
         if (i < parts.length - 1) {
             html += ' / ';
         }
@@ -117,7 +117,13 @@ function addDataTables() {
     });
 }
 
-function addLinks() {
+function addIconsToLinks() {
+    contentContainer.find('.content-link').each(function() {
+        const link = $(this);
+        const contentPath = link.attr('content-path');
+        const icon = pageIcons[contentPath] ? `<img src="${repoUrl}/main/${pageIcons[contentPath]["small"]}" alt="icon"> ` : '';
+        link.prepend(icon);
+    });
 }
 
 $(document).ready(function() {

@@ -1,11 +1,11 @@
 {
     "headers": [ "Index", "Name", "Position" ],
     "rows": [
-        [ "0x00", "Fuel Meter (75%)", "(0x027B, 0x00C2)" ],
-        [ "0x01", "Warp (Blue)", "(0x003B, 0x003B)" ],
-        [ "0x02", "Shield", "(0x00F9, 0x0352)" ],
-        [ "0x03", "Crystal (Blue)", "(0x0244, 0x0348)" ],
-        [ "0x04", "Fuel Cell", "(0x03D9, 0x018C)" ],
-        [ "0x05", "Wormhole", "(0x03A4, 0x02D3)" ]
+        [ "0x00", "<div class=\"content-link\" content-path=\"/preludon/objects/fuel-meter-75\">Fuel Meter (75%)</div>", "(0x027B, 0x00C2)" ],
+        [ "0x01", "<div class=\"content-link\" content-path=\"/preludon/objects/warp-blue\">Warp (Blue)</div>", "(0x003B, 0x003B)" ],
+        [ "0x02", "<div class=\"content-link\" content-path=\"/preludon/objects/shield\">Shield</div>", "(0x00F9, 0x0352)" ],
+        [ "0x03", "<div class=\"content-link\" content-path=\"/preludon/objects/crystal-blue\">Crystal (Blue)</div>", "(0x0244, 0x0348)" ],
+        [ "0x04", "<div class=\"content-link\" content-path=\"/preludon/objects/fuel-cell\">Fuel Cell</div>", "(0x03D9, 0x018C)" ],
+        [ "0x05", "<div class=\"content-link\" content-path=\"/preludon/objects/wormhole\">Wormhole</div>", "(0x03A4, 0x02D3)" ]
     ]
 }

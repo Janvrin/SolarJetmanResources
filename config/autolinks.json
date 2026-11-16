@@ -1,5 +1,5 @@
 {
-    "saucer forcer": "/info/enemies/saucer_forcer",
-    "level timer": "/info/enemies/level_timer",
-    "fuel cell": "/info/objects/fuel_cell"
+    "Saucer Forcer": "/info/enemies/saucer_forcer",
+    "Level Timer": "/info/enemies/level_timer",
+    "Fuel Cell": "/info/objects/fuel_cell"
 }

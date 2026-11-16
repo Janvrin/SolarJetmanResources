@@ -27,12 +27,12 @@ function loadContent() {
     }
 }
 
-// Parse the content html and replace strings that match the parseMap keys with a content-link to the related page, ignoring case
+// Parse the content html and replace strings that match the parseMap keys with a content-link to the related page
 function parseContentLinks(html) {
     for (const key in parseMap) {
         const regex = new RegExp(`\\b${key}\\b`, 'g');
         const path = parseMap[key]
-        const icon = iconMap[key]["small"] || '';
+        const icon = iconMap[key + "_small"] || '';
 
         if (icon) {
             html = html.replace(regex, `<button content-path="${path}" class="content-link inline-link"><img src="https://raw.githubusercontent.com/Janvrin/SolarJetmanResources/${icon}" alt="${key}" /> ${key}</button>`);
@@ -54,7 +54,6 @@ $(document).ready(function() {
     window.addEventListener('popstate', loadContent);
 
     fetch(`${repoUrl}/main/config/autolinks.json`)
-        .then(response => response.text())
         .then(response => response.json())
         .then(json => {
             Object.assign(parseMap, json);
@@ -63,8 +62,7 @@ $(document).ready(function() {
             console.error('Error loading autolinks:', error);
         });
     
-    fetch(`${repoUrl}/main/config/icons.json`)
-        .then(response => response.text())
+    fetch(`${repoUrl}/main/config/page_icons.json`)
         .then(response => response.json())
         .then(json => {
             Object.assign(iconMap, json);

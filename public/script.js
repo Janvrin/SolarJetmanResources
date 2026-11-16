@@ -32,7 +32,7 @@ function enrich(path) {
     addBreadcrumbs(path);
     addMetadataTables();
     addDataTables();
-    addLinks();
+    addIconsToLinks();
 }
 
 function addPageTitle(path) {
@@ -57,9 +57,9 @@ function addBreadcrumbs(path) {
 
         const title = pageTitles[currentPath] || parts[i];
 
-        html += `<div content-path="${currentPath}" class="content-link inline-link">${title}</div>`;
+        html += `<span content-path="${currentPath}" class="content-link inline-link">${title}</span>`;
         if (i < parts.length - 1) {
-            html += ' / ';
+            html += '  /  ';
         }
     }
 

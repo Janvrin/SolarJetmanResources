@@ -1,4 +1,6 @@
 
+const parseMap = {};
+const iconMap = {};
 const repoUrl = 'https://raw.githubusercontent.com/Janvrin/SolarJetmanResources';
 
 function loadContent() {
@@ -17,12 +19,28 @@ function loadContent() {
         fetch(`${repoUrl}/main/content${path}.html`)
             .then(response => response.text())
             .then(html => {
-                contentContainer.innerHTML = html;
+                contentContainer.innerHTML = parseContentLinks(html);
             })
             .catch(error => {
                 console.error('Error loading content:', error);
             });
     }
+}
+
+// Parse the content html and replace strings that match the parseMap keys with a content-link to the related page, ignoring case
+function parseContentLinks(html) {
+    for (const key in parseMap) {
+        const regex = new RegExp(`\\b${key}\\b`, 'g');
+        const path = parseMap[key]
+        const icon = iconMap[key]["small"] || '';
+
+        if (icon) {
+            html = html.replace(regex, `<button content-path="${path}" class="content-link inline-link"><img src="https://raw.githubusercontent.com/Janvrin/SolarJetmanResources/${icon}" alt="${key}" /> ${key}</button>`);
+        } else {
+            html = html.replace(regex, `<button content-path="${path}" class="content-link inline-link">${key}</button>`);
+        }
+    }
+    return html;
 }
 
 $(document).ready(function() {
@@ -34,4 +52,24 @@ $(document).ready(function() {
         loadContent();
     });
     window.addEventListener('popstate', loadContent);
+
+    fetch(`${repoUrl}/main/config/autolinks.json`)
+        .then(response => response.text())
+        .then(response => response.json())
+        .then(json => {
+            Object.assign(parseMap, json);
+        })
+        .catch(error => {
+            console.error('Error loading autolinks:', error);
+        });
+    
+    fetch(`${repoUrl}/main/config/icons.json`)
+        .then(response => response.text())
+        .then(response => response.json())
+        .then(json => {
+            Object.assign(iconMap, json);
+        })
+        .catch(error => {
+            console.error('Error loading icons:', error);
+        });
 });

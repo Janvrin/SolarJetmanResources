@@ -1,6 +1,38 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
 header {
+    margin: 0;
+    padding: 16px;
     font-family: 'Press Start 2P', system-ui;
     font-weight: 400;
     font-size: 16px;
     font-style: normal;
+    color: #b96f29;
+    background-color: #374dac;
+}
+
+footer {
+    margin: 0;
+    padding: 16px;
+    color: #b96f29;
+    background-color: #374dac;
+}
+
+main {
+    margin: 0;
+    padding: 16px;
+}
+
+.inline-link {
+    background: none;
+    border: none;
+    color: #374dac;
+    cursor: pointer;
+    text-decoration: underline;
+    font-family: 'Press Start 2P', system-ui;
+    font-weight: 400;
+    font-size: 16px;
 }

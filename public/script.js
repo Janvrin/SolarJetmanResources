@@ -27,15 +27,22 @@ function loadContent() {
 }
 
 function createBreadcrumbs(path) {
-    const html = "<div>";
+    var html = "<div>";
 
     const parts = path.split('/');
 
     var currentPath = '';
 
     for (var i = 0; i < parts.length; i++) {
+
+        var part = parts[i];
+
+        if (part === 'index') {
+            part = '';
+        }
+
         currentPath += '/' + parts[i];
-        html += `<button content-path="${currentPath}" class="content-link inline-link">${parts[i]}</button>`;
+        html += `<button content-path="/${currentPath}" class="content-link inline-link">${parts[i]}</button>`;
         if (i < parts.length - 1) {
             html += ' / ';
         }

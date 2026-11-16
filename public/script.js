@@ -18,12 +18,18 @@ function loadContent() {
         fetch(`${repoUrl}/main/content${path}.html`)
             .then(response => response.text())
             .then(html => {
-                contentContainer.innerHTML = createBreadcrumbs(path) + createPageTitle(path) + html;
+                contentContainer.innerHTML = enrich(path, html);
             })
             .catch(error => {
                 console.error('Error loading content:', error);
             });
     }
+}
+
+function enrich(path, html) {
+    html = createBreadcrumbs(path) + createPageTitle(path) + html;
+    html = addMetadataTables(html);
+    return html;
 }
 
 function createBreadcrumbs(path) {
@@ -56,6 +62,29 @@ function createPageTitle(path) {
     const icon = pageIcons[path] ? `<img src="${repoUrl}/main/${pageIcons[path]}" alt="${title} icon"> ` : '';
 
     return "<h2>" + icon + title + "</h2>";
+}
+
+function addMetadataTables(html) {
+
+    $(html).find('div.metadata-table').each(function() {
+        const table = this;
+        const path = $(table).data('path');
+        fetch(`${repoUrl}/main/data${path}/metadata.json`)
+            .then(response => response.json())
+            .then(metadata => {
+                let tableHtml = '<table class="data-table">';
+                for (const key in metadata) {
+                    tableHtml += `<tr><th>${key}</th><td>${metadata[key]}</td></tr>`;
+                }
+                tableHtml += '</table>';
+                $(table).replaceWith(tableHtml);
+            })
+            .catch(error => {
+                console.error('Error loading metadata:', error);
+            });
+    });
+
+    return html;
 }
 
 $(document).ready(function() {

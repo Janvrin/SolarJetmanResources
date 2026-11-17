@@ -27,11 +27,13 @@ function loadContent() {
     }
 }
 
-function enrich(path) {
+async function enrich(path) {
     addPageTitle(path);
     addBreadcrumbs(path);
-    addMetadataTables();
-    addDataTables();
+    await Promise.all([
+        addMetadataTables(),
+        addDataTables()
+    ]);
     addIconsToLinks();
 }
 
@@ -67,71 +69,83 @@ function addBreadcrumbs(path) {
     contentContainer.prepend(html);
 }
 
-function addMetadataTables() {
-    contentContainer.find('div.metadata-table').each(function() {
-        const table = this;
+async function addMetadataTables() {
+    const metadataTables = contentContainer.find('div.metadata-table').toArray();
+    const requests = metadataTables.map(async (table) => {
         const path = $(table).data('path');
-        fetch(`${repoUrl}/main/data${path}`)
-            .then(response => response.json())
-            .then(metadata => {
-                let tableHtml = '<table class="data-table">';
-                for (const key in metadata) {
-                    tableHtml += `<tr><th>${key}</th><td>${metadata[key]}</td></tr>`;
-                }
-                tableHtml += '</table>';
+        const response = await fetch(`${repoUrl}/main/data${path}`);
 
-                $(table).html(tableHtml);
-            })
-            .catch(error => {
-                console.error('Error loading metadata:', error);
-            });
+        if (!response.ok) {
+            console.error('Error loading metadata:', response.statusText);
+            return;
+        }
+
+        const metadata = await response.json();
+
+        let tableHtml = '<table class="data-table">';
+        for (const key in metadata) {
+            tableHtml += `<tr><th>${key}</th><td>${metadata[key]}</td></tr>`;
+        }
+        tableHtml += '</table>';
+
+        $(table).html(tableHtml);
+
+        console.log('Metadata loaded for', path);
     });
+    await Promise.all(requests);
 }
 
-function addDataTables() {
-    contentContainer.find('div.data-table').each(function() {
-        const table = this;
+async function addDataTables() {
+    const dataTables = contentContainer.find('div.data-table').toArray();
+    const requests = dataTables.map(async (table) => {
         const path = $(table).data('path');
-        fetch(`${repoUrl}/main/data${path}`)
-            .then(response => response.json())
-            .then(data => {
-                let tableHtml = '<table class="data-table"><thead><tr>';
-                for (const header of data["headers"]) {
-                    tableHtml += `<th>${header}</th>`;
-                }
-                tableHtml += '</tr></thead><tbody>';
-                for (const row of data["rows"]) {
-                    tableHtml += '<tr>';
-                    for (const cell of row) {
-                        tableHtml += `<td>${cell}</td>`;
-                    }
-                    tableHtml += '</tr>';
-                }
-                tableHtml += '</tbody></table>';
+        const response = await fetch(`${repoUrl}/main/data${path}`);
 
-                $(table).html(tableHtml);
-            })
-            .catch(error => {
-                console.error('Error loading data:', error);
-            });
+        if (!response.ok) {
+            console.error('Error loading data:', response.statusText);
+            return;
+        }
+
+        const data = await response.json();
+
+        let tableHtml = '<table class="data-table"><thead><tr>';
+        for (const header of data["headers"]) {
+            tableHtml += `<th>${header}</th>`;
+        }
+        tableHtml += '</tr></thead><tbody>';
+        for (const row of data["rows"]) {
+            tableHtml += '<tr>';
+            for (const cell of row) {
+                tableHtml += `<td>${cell}</td>`;
+            }
+            tableHtml += '</tr>';
+        }
+        tableHtml += '</tbody></table>';
+
+        $(table).html(tableHtml);
+
+        console.log('Data loaded for', path);
     });
+    await Promise.all(requests);
 }
 
 function addIconsToLinks() {
+    console.log(pageIcons);
     contentContainer.find('.content-link').each(function() {
         const link = $(this);
         const contentPath = link.attr('content-path');
-        const icon = pageIcons[contentPath] ? `<img src="${repoUrl}/main/${pageIcons[contentPath]["small"]}" alt="icon"> ` : '';
+        console.log(contentPath);
+        const icon = pageIcons[contentPath] ? `<img src="${repoUrl}/main/media/icons/${pageIcons[contentPath]["small"]}" alt=""> ` : '';
         link.prepend(icon);
     });
 }
 
-$(document).ready(function() {
+$(document).ready(async function() {
 
-    $.getJSON(`${repoUrl}/main/config/page_titles.json`, function(data) {
+    await $.getJSON(`${repoUrl}/main/config/page_titles.json`, function(data) {
         pageTitles = data;
     });
-    $.getJSON(`${repoUrl}/main/config/page_icons.json`, function(data) {
+    await $.getJSON(`${repoUrl}/main/config/page_icons.json`, function(data) {
         pageIcons = data;
     });
     contentContainer = $('#content');

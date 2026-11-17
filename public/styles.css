@@ -28,7 +28,8 @@ main {
     color: #f0f0f0;
     font-family: "JetBrains Mono", monospace;
     font-optical-sizing: auto;
-    font-weight: 400;
+    font-weight: 100;
+    font-size: 16px;
     font-style: normal;
 }
 
@@ -37,6 +38,13 @@ main {
     border: none;
     color: #374dac;
     cursor: pointer;
+    vertical-align: middle;
+    align-items: center;
+    display: inline-flex;
+}
+
+.content-link img {
+    margin-right: 4px;
 }
 
 .data-table {
@@ -46,18 +54,20 @@ main {
 
 .data-table thead tr th {
     border: 1px solid #b96f29;
-    padding: 8px;
+    color: #b96f29;
+    padding: 4px;
     text-align: left;
 }
 
 .data-table tbody tr th {
     border: 1px solid #b96f29;
-    padding: 8px;
+    color: #b96f29;
+    padding: 4px;
     text-align: right;
 }
 
 .data-table tbody tr td {
     border: 1px solid #b96f29;
-    padding: 8px;
+    padding: 4px;
     text-align: left;
 }

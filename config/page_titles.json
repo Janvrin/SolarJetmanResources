@@ -2,5 +2,9 @@
     "/": "Home",
     "/info": "Info",
     "/info/maps": "Maps",
-    "/info/maps/preludon": "Preludon"
+    "/info/maps/preludon": "Preludon",
+    "/info/enemies": "Enemies",
+    "/info/objects": "Objects",
+    "/info/mechanics": "Mechanics",
+    "/info/mechanics/level_timer": "Level Timer"
 }

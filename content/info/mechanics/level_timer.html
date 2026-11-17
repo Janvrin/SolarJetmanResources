@@ -1,0 +1,19 @@
+<p>
+    The level timer is a hidden mechanic that dictates certain events across various levels in the game. It starts from 0x0000 and increments each frame, even when the game is paused. The timer resets to zero in the following situations:
+    <ul>
+        <li>Leaving the mothership</li>
+        <li>Warping to or from the part room</li>
+        <li>Checking the map</li>
+        <li>Dying as the Jetman and respawning in a Jetpod</li>
+        <li>Warping between small wormholes in the Italian Racing Jetpod</li>
+        <li>Dropping off an item at a small wormhole or mothership that causes a notification</li>
+    </ul>
+
+    The level timer is responsible for the following time based events:
+    <ul>
+        <li>Despawning the warp enemy on Preludon after 0x0500 frames</li>
+        <li>Despawning the small warp on Mexomorf after 0x0400 frames</li>
+        <li>Spawning a saucer forcer at 0x0300 frames, and every 0x0400 frames thereafter</li>
+        <li>Affects random spawning behavior of spheres, spray cans, and space snakes</li>
+    </ul>
+</p>

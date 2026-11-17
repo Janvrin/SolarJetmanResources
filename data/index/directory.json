@@ -1,7 +1,7 @@
 [
-    "/info",
-    "/data",
-    "/speedrunning",
-    "/rom_hacking",
-    "/community"
+    { "path": "/info", "title": "Info", "description": "Information about the game" },
+    { "path": "/data", "title": "Data", "description": "Game data and resources" },
+    { "path": "/speedrunning", "title": "Speedrunning", "description": "Speedrunning guides and resources" },
+    { "path": "/rom_hacking", "title": "Rom Hacking", "description": "Rom hacking resources" },
+    { "path": "/community", "title": "Community", "description": "Community resources and discussions" }
 ]

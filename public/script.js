@@ -145,7 +145,7 @@ async function addDirectories() {
 
         let directoryHtml = '<ul>';
         for (const item of data) {
-            directoryHtml += `<li><span content-path="${item}" class="content-link">${item}</span></li>`;
+            directoryHtml += `<div content-path="${item["path"]}" class="content-link"><h3>${item["title"] || item["path"].split('/').pop()}</h3><p>${item["description"] || ""}</p></div>`;
         }
         directoryHtml += '</ul>';
 

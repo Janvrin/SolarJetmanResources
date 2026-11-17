@@ -41,7 +41,7 @@ function addPageTitle(path) {
     const title = pageTitles[path] || path.split('/').pop();
     const icon = pageIcons[path] ? `<img src="${repoUrl}/main/${pageIcons[path]["large"]}" alt="${title} icon"> ` : '';
 
-    contentContainer.prepend("<h2>" + icon + title + "</h2>");
+    contentContainer.prepend("<h1>" + icon + title + "</h1>");
 }
 
 function addBreadcrumbs(path) {

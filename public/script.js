@@ -32,7 +32,8 @@ async function enrich(path) {
     addBreadcrumbs(path);
     await Promise.all([
         addMetadataTables(),
-        addDataTables()
+        addDataTables(),
+        addDirectories()
     ]);
     addIconsToLinks();
 }
@@ -125,6 +126,30 @@ async function addDataTables() {
         $(table).html(tableHtml);
 
         console.log('Data loaded for', path);
+    });
+    await Promise.all(requests);
+}
+
+async function addDirectories() {
+    const directories = contentContainer.find('div.directory').toArray();
+    const requests = directories.map(async (directory) => {
+        const path = $(directory).data('path');
+        const response = await fetch(`${repoUrl}/main/data${path}`);
+
+        if (!response.ok) {
+            console.error('Error loading directory:', response.statusText);
+            return;
+        }
+
+        const data = await response.json();
+
+        let directoryHtml = '<ul>';
+        for (const item of data) {
+            directoryHtml += `<li><span content-path="${item}" class="content-link">${item}</span></li>`;
+        }
+        directoryHtml += '</ul>';
+
+        $(directory).html(directoryHtml);
     });
     await Promise.all(requests);
 }
